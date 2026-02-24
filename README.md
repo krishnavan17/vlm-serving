@@ -117,3 +117,22 @@ Detailed caption:
 
 Detailed caption (upload file directly on same API):
 - `curl -s -X POST http://localhost:8000/caption-detailed -F "image=@$IMG_PATH" | jq .`
+
+## Bounding box overlay utility
+
+Use the helper script to call `/locate-reference` with file upload and draw the returned bounding box on the image.
+
+Install local dependencies (if running script outside Docker):
+- `python3 -m pip install requests pillow`
+
+Example:
+- `python3 utils/locate_and_overlay.py /home/user/screenshot.png Intel`
+
+Optional flags:
+- `--api-url http://localhost:8000`
+- `--output /home/user/screenshot_bbox.png`
+- `--timeout 120`
+
+Expected output:
+- Saves an annotated image (default name: `<input_stem>_bbox<input_suffix>`)
+- Prints pixel bbox coordinates in terminal

@@ -83,8 +83,10 @@ async def parse_image_input(request: Request) -> tuple[Path, dict[str, Any], boo
     if "multipart/form-data" in content_type:
         form = await request.form()
         image = form.get("image")
-        if not isinstance(image, UploadFile):
+        if image is None:
             raise_bad_request("image file is required for multipart requests (field name: image)")
+        if not hasattr(image, "read") or not hasattr(image, "filename"):
+            raise_bad_request("invalid image upload for field 'image'; use curl -F \"image=@/path/to/file\"")
 
         temp_path = await save_upload_to_temp(image)
         data = {key: value for key, value in form.items() if key != "image"}
