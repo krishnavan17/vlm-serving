@@ -53,7 +53,7 @@ class TestBSOD:
         assert bsod_flags[0].score > 0.5
 
     def test_windows_bsod_color_flagged(self, detector):
-        """Classic Windows BSOD colour (0x0078D7 ≈ RGB 0,120,215 → BGR 215,120,0)
+        """Classic Windows BSOD color (0x0078D7 ≈ RGB 0,120,215 → BGR 215,120,0)
         has high blue dominance and should also trigger BSOD."""
         # Approximate Windows 10 BSOD: medium blue, low std
         frame = _solid(b=200, g=100, r=40)

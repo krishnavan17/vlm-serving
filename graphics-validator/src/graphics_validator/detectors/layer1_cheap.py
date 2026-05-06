@@ -1,7 +1,7 @@
 """Layer-1 cheap heuristic detectors (target <2 ms/frame at 1280×720).
 
 Detects: BSOD, black screen, frozen frames, tearing, NaN/Inf pixel blobs,
-and missing-texture colours (magenta / black checker).
+and missing-texture colors (magenta / black checker).
 All checks use NumPy and OpenCV only — no deep learning.
 """
 from __future__ import annotations
@@ -33,7 +33,7 @@ class Layer1Detector:
     tearing_sobel_z_thresh:
         Z-score threshold for horizontal tear-line detection via Sobel-Y.
     missing_texture_threshold:
-        Fraction of pixels that must be magenta/checker colour to flag.
+        Fraction of pixels that must be magenta/checker color to flag.
     """
 
     def __init__(
@@ -173,7 +173,7 @@ class Layer1Detector:
 
         In rendered content NaN/Inf GPU values typically saturate to pure white
         (0xFFFFFF) or pure black (0x000000). We look for large connected regions
-        of those extreme colours in scenes that are otherwise complex.
+        of those extreme colors in scenes that are otherwise complex.
         """
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         global_std = float(gray.std())
@@ -207,7 +207,7 @@ class Layer1Detector:
         return flags
 
     def _check_missing_texture(self, frame: np.ndarray) -> list[Flag]:
-        """Detect missing-texture sentinel colours: magenta and black/purple checker.
+        """Detect missing-texture sentinel colors: magenta and black/purple checker.
 
         Unreal Engine uses magenta (255, 0, 255) and a black/purple checker for
         missing textures. Unity uses a similar magenta or cyan checker.

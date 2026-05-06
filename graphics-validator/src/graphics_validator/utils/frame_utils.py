@@ -24,7 +24,7 @@ def luminance_mean(frame: np.ndarray) -> float:
 
 
 def dominant_color(frame: np.ndarray, k: int = 3) -> np.ndarray:
-    """Return the dominant BGR colour of *frame* via k-means clustering.
+    """Return the dominant BGR color of *frame* via k-means clustering.
 
     Parameters
     ----------

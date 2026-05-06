@@ -177,7 +177,6 @@ def build_user_prompt(
         "- If the frame looks normal despite flags, set category='no_anomaly' with high false_positive_likelihood.",
         "- Cite concrete visual evidence; do not speculate beyond what is visible.",
         "- Prefer specific visual evidence over generic descriptions.",
-        "- Do not speculate beyond what is visible in the frame.",
     ]
 
     return "\n".join(lines)
