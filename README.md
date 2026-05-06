@@ -136,3 +136,7 @@ Optional flags:
 Expected output:
 - Saves an annotated image (default name: `<input_stem>_bbox<input_suffix>`)
 - Prints pixel bbox coordinates in terminal
+
+## Automated graphics validation
+
+> See [`graphics-validator/`](graphics-validator/README.md) for the automated graphics-validation pipeline that uses this serving stack as its VLM backend.

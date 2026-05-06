@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "graphics-validator"
+version = "0.1.0"
+description = "Hybrid multi-layer pipeline for automated graphics validation of PC games and Windows display"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "numpy>=1.24",
+    "opencv-python-headless>=4.8",
+    "scikit-image>=0.21",
+    "typer[all]>=0.12",
+    "rich>=13",
+    "pyyaml>=6",
+    "requests>=2.31",
+    "Pillow>=10",
+    "Jinja2>=3.1",
+]
+
+[project.optional-dependencies]
+hf = [
+    "torch>=2.1",
+    "transformers>=4.40",
+    "accelerate>=0.28",
+]
+lpips = [
+    "lpips>=0.1.4",
+]
+dino = [
+    "torch>=2.1",
+    "torchvision>=0.16",
+]
+all = [
+    "graphics-validator[hf,lpips,dino]",
+]
+
+[project.scripts]
+graphics-validator = "graphics_validator.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"

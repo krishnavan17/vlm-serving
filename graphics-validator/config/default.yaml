@@ -1,0 +1,39 @@
+# Graphics Validator default configuration
+vlm:
+  host: "http://localhost:11434"
+  model: "qwen2.5vl"
+  backend: "ollama"  # "ollama" or "hf"
+  timeout: 60
+
+pipeline:
+  fps_sample: 4          # frames per second to sample from input video
+  trigger_min_severity: "medium"  # minimum severity to call Layer 4 VLM
+
+layer1:
+  bsod_blue_dominance: 0.55   # B channel dominance fraction
+  bsod_max_std: 45.0
+  black_mean_threshold: 20.0
+  black_max_std: 30.0
+  frozen_ring_size: 8         # consecutive identical hashes → frozen
+  tearing_sobel_z_thresh: 4.0
+  missing_texture_threshold: 0.05  # fraction of magenta/checker pixels
+
+layer2:
+  window_seconds: 2.0
+  flicker_min_hz: 3.0
+  flicker_max_hz: 50.0
+  flicker_z_thresh: 3.5
+  flow_z_thresh: 3.0
+  embedding_cos_thresh: 0.25
+
+layer3:
+  ssim_min: 0.80       # SSIM below this → flag
+  lpips_max: 0.30      # LPIPS above this → flag (if library available)
+
+reporting:
+  out_dir: "reports"
+  save_thumbs: true
+  save_clips: false
+  thumb_width: 320
+  clip_pre_frames: 30
+  clip_post_frames: 30
